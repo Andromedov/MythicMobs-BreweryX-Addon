@@ -35,12 +35,11 @@ jobs:
       - name: Build project
         run: ./gradlew build
 
-      - name: Create Git tag (if not exists)
+      - name: Find main JAR
+        id: find_jar
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag ${{ github.event.inputs.tag }}
-          git push origin ${{ github.event.inputs.tag }}
+          MAIN_JAR=$(ls build/libs/*.jar | grep -vE '(-sources|-javadoc)\.jar$' | head -n 1)
+          echo "jar=$MAIN_JAR" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -49,6 +48,6 @@ jobs:
           name: ${{ github.event.inputs.release_name }}
           draft: false
           prerelease: ${{ github.event.inputs.prerelease }}
-          files: build/libs/*.jar
+          files: ${{ steps.find_jar.outputs.jar }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
