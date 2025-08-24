@@ -1,0 +1,10 @@
+name: "${name}"
+version: "${version}"
+description: "${description}"
+author: "${author}"
+main: "${main}"
+
+depend:
+  - MythicMobs
+
+breweryversion: "3.6.0"
