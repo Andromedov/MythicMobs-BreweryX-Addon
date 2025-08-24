@@ -16,29 +16,32 @@ public class MythicMobsPluginItem extends PluginItem {
         try {
             ItemManager itemManager = MythicBukkit.inst().getItemManager();
 
-            // Перевіряємо, чи є ItemStack предметом MythicMobs
-            if (!itemManager.isMythicItem(itemStack)) {
-                return false;
-            }
-
             // Отримуємо ID з конфігурації
             String configItemId = this.getItemId();
             if (configItemId == null) {
                 return false;
             }
 
-            // Створюємо еталонний ItemStack для порівняння
-            return itemManager.getItem(configItemId)
-                    .map(mythicItem -> {
-                        // Конвертуємо AbstractItemStack у Bukkit ItemStack
-                        ItemStack referenceItem = (ItemStack) mythicItem.generateItemStack(itemStack.getAmount());
-                        return referenceItem != null && referenceItem.isSimilar(itemStack);
-                    })
-                    .orElse(false);
+            // Перевіряємо, чи є ItemStack предметом MythicMobs
+            if (!itemManager.isMythicItem(itemStack)) {
+                return false;
+            }
+
+            // Отримуємо MythicType з поточного ItemStack
+            String currentMythicType = itemManager.getMythicTypeFromItem(itemStack);
+
+            // Додаємо детальне логування
+            if (MythicMobsAddon.getLogger() != null) {
+                MythicMobsAddon.getLogger().info("Checking MythicMobs item - Config ID: " + configItemId +
+                        ", Current Type: " + currentMythicType + ", Match: " + configItemId.equals(currentMythicType));
+            }
+
+            return configItemId.equals(currentMythicType);
 
         } catch (Exception e) {
             if (MythicMobsAddon.getLogger() != null) {
                 MythicMobsAddon.getLogger().warning("Error checking MythicMobs item: " + e.getMessage());
+                e.printStackTrace();
             }
             return false;
         }
