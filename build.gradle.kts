@@ -1,24 +1,62 @@
 plugins {
-    id("java")
+    `java-library`
+    `maven-publish`
 }
 
-group = "dev.jsinco.brewery"
-version = "1.0-SNAPSHOT"
+group = "me.andromedov"
+version = "1.0"
+description = "MythicMobs support addon for BreweryX"
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+    withSourcesJar()
+}
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
+    // Paper & Spigot API
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+
+    // BreweryX API
+    maven("https://repo.jsinco.dev/releases")
+    // MythicMobs API
+    maven("https://mvn.lumine.io/repository/maven-public/")
 }
 
 dependencies {
-    // Include the latest release of BreweryX instead of this version.
-    compileOnly("com.github.BreweryTeam:BreweryX:snapshot-SNAPSHOT")
+    // Paper API
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    // BreweryX API
+    compileOnly("com.dre.brewery:BreweryX:3.6.0")
+    // MythicMobs API
+    compileOnly("io.lumine:Mythic-Dist:5.9.5")
 
-    // We need to include our own copy of whatever server software we're writing against!
-    compileOnly("org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT")
+    // Annotations
+    compileOnly("org.jetbrains:annotations:24.0.1")
+}
 
-    // Lombok is recommended if using configs in Java
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+tasks.processResources {
+    val props = mapOf(
+        "name" to "MythicMobs-BreweryX-Addon",
+        "version" to project.version,
+        "description" to project.description,
+        "author" to "Andromedov",
+        "main" to "me.andromedov.mythicmobsbreweryx.MythicMobsBreweryXAddon"
+    )
+    inputs.properties(props)
+    filesMatching("addon.yml") {
+        expand(props)
+    }
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    archiveBaseName.set("MythicMobs-BreweryX-Addon")
+}
+
+tasks.build {
+    dependsOn(tasks.jar)
 }
