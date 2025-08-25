@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "me.andromedov"
-version = "1.0"
+version = "1.1"
 description = "MythicMobs support addon for BreweryX"
 
 java {
@@ -32,7 +32,7 @@ dependencies {
     // BreweryX API
     compileOnly("com.dre.brewery:BreweryX:3.6.0")
     // MythicMobs API
-    compileOnly("io.lumine:Mythic-Dist:5.9.5")
+    compileOnly("io.lumine:Mythic-Dist:5.4.0")
 
     // Annotations
     compileOnly("org.jetbrains:annotations:24.0.1")
@@ -46,10 +46,6 @@ tasks.processResources {
         "author" to "Andromedov",
         "main" to "me.andromedov.mythicmobsbreweryx.MythicMobsBreweryXAddon"
     )
-    inputs.properties(props)
-    filesMatching("addon.yml") {
-        expand(props)
-    }
 }
 
 tasks.jar {

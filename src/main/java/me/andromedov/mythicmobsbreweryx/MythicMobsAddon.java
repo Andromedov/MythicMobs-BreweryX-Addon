@@ -6,8 +6,9 @@ import com.dre.brewery.api.addons.BreweryAddon;
 import com.dre.brewery.recipe.PluginItem;
 import org.bukkit.Bukkit;
 
-@AddonInfo(name = "MythicMobsBreweryXAddon", version = "1.0", author = "Andromedov")
+@AddonInfo(name = "MythicMobsBreweryXAddon", version = "1.1", author = "Andromedov", description = "Adds support for MythicMobs custom items to BreweryX.")
 public class MythicMobsAddon extends BreweryAddon {
+
     private static AddonLogger logger;
     private static boolean useMythicMobs = false;
 
@@ -17,7 +18,6 @@ public class MythicMobsAddon extends BreweryAddon {
 
     @Override
     public void onAddonPreEnable() {
-        // Перевірка наявності MythicMobs на ранній стадії
         useMythicMobs = Bukkit.getPluginManager().getPlugin("MythicMobs") != null;
         logger = getAddonLogger();
 
@@ -33,10 +33,6 @@ public class MythicMobsAddon extends BreweryAddon {
         } else {
             logger.warning("MythicMobs not found! Support disabled.");
         }
-    }
-
-    @Override
-    public void onAddonEnable() {
     }
 
     public static boolean isUsingMythicMobs() {

@@ -16,26 +16,26 @@ public class MythicMobsPluginItem extends PluginItem {
         try {
             ItemManager itemManager = MythicBukkit.inst().getItemManager();
 
-            // Отримуємо ID з конфігурації
+            // Getting ID from configuration
             String configItemId = this.getItemId();
             if (configItemId == null) {
                 return false;
             }
 
-            // Перевіряємо, чи є ItemStack предметом MythicMobs
+            // Check if ItemStack is a MythicMobs item
             if (!itemManager.isMythicItem(itemStack)) {
                 return false;
             }
 
-            // Отримуємо MythicType з поточного ItemStack
+            // Get MythicType from the current ItemStack
             String currentMythicType = itemManager.getMythicTypeFromItem(itemStack);
 
-            // Додаємо детальне логування
+            /* debug mode
             if (MythicMobsAddon.getLogger() != null) {
                 MythicMobsAddon.getLogger().info("Checking MythicMobs item - Config ID: " + configItemId +
                         ", Current Type: " + currentMythicType + ", Match: " + configItemId.equals(currentMythicType));
             }
-
+            */
             return configItemId.equals(currentMythicType);
 
         } catch (Exception e) {
