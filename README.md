@@ -2,7 +2,7 @@
 
 A seamless integration addon that brings **MythicMobs** item support to **BreweryX** brewing recipes. Create custom alcoholic beverages using your favorite MythicMobs items as ingredients!
 
-[![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
 [![BreweryX](https://img.shields.io/badge/BreweryX-3.6.0-blue.svg)](https://github.com/BreweryTeam/BreweryX)
 [![MythicMobs](https://img.shields.io/badge/MythicMobs-5.4.0+-purple.svg)](https://mythiccraft.io/)
 
@@ -102,9 +102,12 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 
 ### Development Setup
 
-1. Clone the repository
-2. Ensure you have BreweryX and MythicMobs APIs available
-3. Build using `./gradlew clean build`
+1. Fork the repository
+2. Clone forked repository to your PC
+3. Edit code with [Intellij IDEA](https://www.jetbrains.com/idea/download/) or any other IDE
+4. Ensure you have BreweryX and MythicMobs APIs available
+5. Build using `./gradlew clean build`
+6. Create a [PR](https://github.com/Andromedov/MythicMobs-BreweryX-Addon/pulls)
 
 ## 📝 License
 
