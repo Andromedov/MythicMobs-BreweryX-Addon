@@ -6,6 +6,10 @@ A seamless integration addon that brings **MythicMobs** item support to **Brewer
 [![BreweryX](https://img.shields.io/badge/BreweryX-3.6.0-blue.svg)](https://github.com/BreweryTeam/BreweryX)
 [![MythicMobs](https://img.shields.io/badge/MythicMobs-5.4.0+-purple.svg)](https://mythiccraft.io/)
 
+## 🔔 Notice
+
+[TheBrewingProject](https://github.com/BreweryTeam/TheBrewingProject) has already been added native support of the MythicMobs(-Crucible) items. I recommend switching to this plugin, but still this addon is supported (although I haven't received any complaints about bugs yet, hehe), at least until BreweryX stops getting support.
+
 ## 🍺 Features
 
 - **Native Integration**: Use MythicMobs items directly in BreweryX recipes with the `mythic:` prefix
@@ -20,7 +24,7 @@ A seamless integration addon that brings **MythicMobs** item support to **Brewer
 - **Minecraft**: 1.21.8 (Paper)
 - **Java**: 21
 - **BreweryX**: 3.6.0
-- **MythicMobs**: 5.10.0-SNAPSHOT
+- **MythicMobs**: 5.11.0-SNAPSHOT
 - **MythicCrucible**: 2.2.0-SNAPSHOT
 
 ## 🚀 Installation
